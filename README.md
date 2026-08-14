@@ -105,7 +105,7 @@ Make sure the MongoDB server is running before starting the application.
 Open **Command Prompt** or **PowerShell** and run:
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_LINK
+https://github.com/HarshadaNaik2006/Medical-Store-Management-System-.git
 ```
 
 Then open the project folder:
