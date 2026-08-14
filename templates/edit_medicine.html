@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Medicine - Medical Store{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <h1>Edit Medicine</h1>
+        <p>Update medicine information.</p>
+    </div>
+
+    <a href="/medicines" class="btn-secondary">← Back to Medicines</a>
+</div>
+
+<div class="form-container">
+
+    <form method="POST">
+
+        <div class="form-group">
+            <label for="name">Medicine Name</label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                value="{{ medicine.name }}"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="category">Category</label>
+            <input
+                type="text"
+                id="category"
+                name="category"
+                value="{{ medicine.category }}"
+                required
+            >
+        </div>
+
+        <div class="form-row">
+
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input
+                    type="number"
+                    id="price"
+                    name="price"
+                    value="{{ medicine.price }}"
+                    step="0.01"
+                    min="0"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="stock">Stock</label>
+                <input
+                    type="number"
+                    id="stock"
+                    name="stock"
+                    value="{{ medicine.stock }}"
+                    min="0"
+                    required
+                >
+            </div>
+
+        </div>
+
+        <div class="form-actions">
+
+            <a href="/medicines" class="btn-secondary">
+                Cancel
+            </a>
+
+            <button type="submit" class="btn-primary">
+                Update Medicine
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Add Customer - Medical Store{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <h1>Add Customer</h1>
+        <p>Add a new customer to the system.</p>
+    </div>
+
+    <a href="/customers" class="btn-secondary">
+        ← Back to Customers
+    </a>
+</div>
+
+<div class="form-container">
+
+    <form method="POST" action="/customers/add">
+
+        <div class="form-group">
+            <label for="name">Customer Name</label>
+
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter customer name"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+
+            <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Enter phone number"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter email address"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="address">Address</label>
+
+            <textarea
+                id="address"
+                name="address"
+                placeholder="Enter customer address"
+                rows="4"
+            ></textarea>
+        </div>
+
+        <div class="form-actions">
+
+            <a href="/customers" class="btn-secondary">
+                Cancel
+            </a>
+
+            <button type="submit" class="btn-primary">
+                Add Customer
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

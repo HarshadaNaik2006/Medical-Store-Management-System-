@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+
+{% block title %}Create Bill - Medical Store{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <h1>Create Bill</h1>
+        <p>Create a new customer bill.</p>
+    </div>
+
+    <a href="/bills" class="btn-secondary">
+        ← Back to Billing
+    </a>
+</div>
+
+<div class="form-container">
+
+    <form method="POST" action="/bills/add">
+
+        <div class="form-group">
+            <label for="customer_id">Customer</label>
+
+            <select id="customer_id" name="customer_id" required>
+                <option value="">-- Select Customer --</option>
+
+                {% for customer in customers %}
+                <option value="{{ customer._id }}">
+                    {{ customer.name }} - {{ customer.phone }}
+                </option>
+                {% endfor %}
+
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            <label for="medicine_id">Medicine</label>
+
+            <select id="medicine_id" name="medicine_id" required>
+
+            <option value="">-- Select Medicine --</option>
+
+            {% for medicine in medicines %}
+
+            <option value="{{ medicine._id }}">
+            {{ medicine.name }} - ₹{{ medicine.price }} - Stock: {{ medicine.stock }}
+            </option>
+
+        {% endfor %}
+
+        </select>
+        </div>
+
+
+        <div class="form-group">
+            <label for="quantity">Quantity</label>
+
+            <input
+                type="number"
+                id="quantity"
+                name="quantity"
+                min="1"
+                required
+            >
+            <div class="bill-calculation">
+
+                <p>
+                    <strong>Price:</strong>
+                    ₹<span id="medicine-price">0</span>
+                </p>
+
+                <p>
+                    <strong>Total:</strong>
+                    ₹<span id="bill-total">0</span>
+                </p>
+
+            </div>
+        </div>
+
+
+        <div class="form-actions">
+
+            <a href="/bills" class="btn-secondary">
+                Cancel
+            </a>
+
+            <button type="submit" class="btn-primary">
+                Create Bill
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+<script>
+
+const medicineSelect = document.getElementById("medicine_id");
+const quantityInput = document.getElementById("quantity");
+
+const priceDisplay = document.getElementById("medicine-price");
+const totalDisplay = document.getElementById("bill-total");
+
+function showStockWarning(message) {
+
+    let warning =
+        document.getElementById("stock-warning");
+
+    if (!warning) {
+
+        warning =
+            document.createElement("div");
+
+        warning.id = "stock-warning";
+
+        warning.style.marginTop = "10px";
+        warning.style.padding = "10px";
+        warning.style.borderRadius = "6px";
+        warning.style.backgroundColor = "#ffebee";
+        warning.style.color = "#c62828";
+        warning.style.fontWeight = "600";
+
+        quantityInput.parentNode.appendChild(warning);
+    }
+
+    warning.textContent = message;
+}
+
+function calculateTotal() {
+
+    const selectedOption =
+        medicineSelect.options[medicineSelect.selectedIndex];
+
+    if (!selectedOption || !selectedOption.value) {
+
+        priceDisplay.textContent = "0";
+        totalDisplay.textContent = "0";
+
+        return;
+    }
+
+    const text = selectedOption.textContent;
+
+    const priceMatch = text.match(/₹\s*([\d.]+)/);
+
+    if (!priceMatch) {
+        return;
+    }
+
+    const price = parseFloat(priceMatch[1]);
+
+    const quantity =
+        parseInt(quantityInput.value) || 0;
+
+    const stockMatch = text.match(/Stock:\s*(\d+)/);
+
+    const stock = stockMatch
+        ? parseInt(stockMatch[1])
+        : 0;
+
+    priceDisplay.textContent = price.toFixed(2);
+
+    totalDisplay.textContent =
+        (price * quantity).toFixed(2);
+
+    if (quantity > stock) {
+
+        totalDisplay.textContent = "0";
+
+        quantityInput.setCustomValidity(
+            "Only " + stock + " units are available."
+        );
+
+        showStockWarning(
+            "⚠️ Only " + stock + " units are available."
+        );
+
+    } else {
+
+        quantityInput.setCustomValidity("");
+
+        showStockWarning("");
+
+    }
+}
+
+
+medicineSelect.addEventListener(
+    "change",
+    calculateTotal
+);
+
+quantityInput.addEventListener(
+    "input",
+    calculateTotal
+);
+
+</script>
+
+{% endblock %}

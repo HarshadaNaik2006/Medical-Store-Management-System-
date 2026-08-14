@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Medical Store{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-header">
+    <h1>Dashboard</h1>
+    <p>Welcome to the Medical Store Management System.</p>
+</div>
+
+
+<!-- Dashboard Cards -->
+
+<div class="dashboard-cards">
+
+    <!-- Medicines -->
+
+    <div class="dashboard-card">
+        <div class="card-icon">💊</div>
+
+        <div>
+            <h3>Medicines</h3>
+
+            <p class="dashboard-number">
+                {{ total_medicines }}
+            </p>
+
+            <p>Medicines in stock</p>
+        </div>
+    </div>
+
+
+    <!-- Customers -->
+
+    <div class="dashboard-card">
+        <div class="card-icon">👥</div>
+
+        <div>
+            <h3>Customers</h3>
+
+            <p class="dashboard-number">
+                {{ total_customers }}
+            </p>
+
+            <p>Registered customers</p>
+        </div>
+    </div>
+
+
+    <!-- Suppliers -->
+
+    <div class="dashboard-card">
+        <div class="card-icon">🚚</div>
+
+        <div>
+            <h3>Suppliers</h3>
+
+            <p class="dashboard-number">
+                {{ total_suppliers }}
+            </p>
+
+            <p>Registered suppliers</p>
+        </div>
+    </div>
+
+
+    <!-- Bills -->
+
+    <div class="dashboard-card">
+        <div class="card-icon">🧾</div>
+
+        <div>
+            <h3>Total Bills</h3>
+
+            <p class="dashboard-number">
+                {{ total_bills }}
+            </p>
+
+            <p>Generated bills</p>
+        </div>
+    </div>
+
+
+    <!-- Total Sales -->
+
+    <div class="dashboard-card">
+        <div class="card-icon">💰</div>
+
+        <div>
+            <h3>Total Sales</h3>
+
+            <p class="dashboard-number">
+                ₹{{ total_sales }}
+            </p>
+
+            <p>Total sales amount</p>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Low Stock Section -->
+
+<div class="dashboard-section">
+
+    <div class="section-header">
+
+        <div>
+            <h2>⚠️ Low Stock Medicines</h2>
+            <p>Medicines with stock below 10 units.</p>
+        </div>
+
+    </div>
+
+
+    {% if low_stock_medicines %}
+
+    <div class="low-stock-list">
+
+        {% for medicine in low_stock_medicines %}
+
+        <div class="low-stock-item">
+
+            <div>
+                <strong>{{ medicine.name }}</strong>
+
+                <span>
+                    {{ medicine.category }}
+                </span>
+            </div>
+
+            <div class="stock-warning">
+                {{ medicine.stock }} units
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="no-low-stock">
+
+        <span>✅</span>
+
+        <div>
+            <strong>Stock levels look good!</strong>
+            <p>No medicines are currently below the minimum stock level.</p>
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

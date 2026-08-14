@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Medical Store Management System{% endblock %}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            🏥 Medical Store
+        </div>
+
+        <div class="nav-links">
+            <a href="/">Dashboard</a>
+            <a href="/medicines">Medicines</a>
+            <a href="/customers">Customers</a>
+            <a href="/suppliers">Suppliers</a>
+            <a href="/bills">Billing</a>
+            <a href="/logout" class="logout-btn">🚪 Logout</a>
+        </div>
+    </nav>
+
+    <main class="main-container">
+
+        {% block content %}
+
+        <div class="welcome-section">
+            <h1>Medical Store Management System</h1>
+            <p>Manage medicines, customers, suppliers and billing easily.</p>
+        </div>
+
+        {% endblock %}
+
+    </main>
+
+</body>
+</html>

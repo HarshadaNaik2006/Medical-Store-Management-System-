@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}Invoice - Medical Store{% endblock %}
+
+{% block content %}
+
+<div class="invoice-page">
+
+    <div class="invoice-actions">
+
+        <a href="/bills" class="btn-secondary">
+            ← Back to Billing
+        </a>
+
+        <button onclick="window.print()" class="btn-primary">
+            🖨 Print Invoice
+        </button>
+
+    </div>
+
+
+    <div class="invoice-container">
+
+        <div class="invoice-header">
+
+            <div>
+                <h1>💊 Medical Store</h1>
+                <p>Medical Store Management System</p>
+            </div>
+
+            <div class="invoice-title">
+                <h2>INVOICE</h2>
+            </div>
+
+        </div>
+
+
+        <div class="invoice-info">
+
+            <div>
+                <strong>Customer</strong>
+                <p>{{ bill.customer_name }}</p>
+            </div>
+
+            <div>
+                <strong>Bill Date</strong>
+                <p>{{ bill.date }}</p>
+            </div>
+
+        </div>
+
+
+        <table class="invoice-table">
+
+            <thead>
+
+                <tr>
+                    <th>Medicine</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+
+                    <td>{{ bill.medicine_name }}</td>
+
+                    <td>{{ bill.quantity }}</td>
+
+                    <td>₹{{ bill.price }}</td>
+
+                    <td>₹{{ bill.total }}</td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+
+        <div class="invoice-total">
+
+            <span>Grand Total</span>
+
+            <strong>
+                ₹{{ bill.total }}
+            </strong>
+
+        </div>
+
+
+        <div class="invoice-footer">
+
+            <p>Thank you for choosing our medical store.</p>
+
+            <p>Please keep this invoice for your records.</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

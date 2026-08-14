@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Supplier - Medical Store{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <h1>Edit Supplier</h1>
+        <p>Update supplier information.</p>
+    </div>
+
+    <a href="/suppliers" class="btn-secondary">
+        ← Back to Suppliers
+    </a>
+</div>
+
+<div class="form-container">
+
+    <form method="POST">
+
+        <div class="form-group">
+            <label for="name">Supplier Name</label>
+
+            <input
+                type="text"
+                id="name"
+                name="name"
+                value="{{ supplier.name }}"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+
+            <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value="{{ supplier.phone }}"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+
+            <input
+                type="email"
+                id="email"
+                name="email"
+                value="{{ supplier.email }}"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="company">Company</label>
+
+            <input
+                type="text"
+                id="company"
+                name="company"
+                value="{{ supplier.company }}"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="address">Address</label>
+
+            <textarea
+                id="address"
+                name="address"
+                rows="4"
+            >{{ supplier.address }}</textarea>
+        </div>
+
+        <div class="form-actions">
+
+            <a href="/suppliers" class="btn-secondary">
+                Cancel
+            </a>
+
+            <button type="submit" class="btn-primary">
+                Update Supplier
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
