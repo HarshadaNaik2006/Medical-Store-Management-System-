@@ -74,3 +74,18 @@ MedicalStoreManagement/
 └── README.md
 
 ccess protected pages without logging in, the system redirects the user to the login page.
+
+## Setup and Installation
+
+Follow the steps below to run the Medical Store Management System on your computer.
+
+### 1. Install Python
+
+Download and install Python 3 from:
+
+https://www.python.org/downloads/
+
+After installation, verify that Python is installed:
+
+```bash
+python --version
