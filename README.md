@@ -73,7 +73,7 @@ MedicalStoreManagement/
 │
 └── README.md
 
-```text
+text ```
 
 ## Setup and Installation
 
