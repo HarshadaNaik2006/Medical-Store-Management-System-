@@ -73,7 +73,7 @@ MedicalStoreManagement/
 │
 └── README.md
 
-ccess protected pages without logging in, the system redirects the user to the login page.
+```text
 
 ## Setup and Installation
 
