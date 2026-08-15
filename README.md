@@ -242,3 +242,6 @@ Since the project only needs to ignore the `env` folder, your `.gitignore` file 
 ```gitignore
 env/
 ```
+
+Project Demo Video
+[▶️ Watch the Medical Store Management System Demo]=https://youtu.be/XmWVPE6UJMw
